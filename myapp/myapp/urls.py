@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-handeler404='myapp.views.custom_page_not_found'
+from django.conf.urls import handler404
+from .views import custom_404_view
+
+handler404 = custom_404_view
 
 urlpatterns = [
     path("blog/", include("blog.urls")),  # Ensure this matches 'blog/urls.py'

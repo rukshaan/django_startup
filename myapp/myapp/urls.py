@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+handeler404='myapp.views.custom_page_not_found'
+
 urlpatterns = [
     path("blog/", include("blog.urls")),  # Ensure this matches 'blog/urls.py'
     path("admin/", admin.site.urls),

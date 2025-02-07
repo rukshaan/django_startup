@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,render
 from django.http import HttpResponse
 from django.urls import reverse
+import logging
 # Create your views here.
 posts=[
         {'id':1,'title':'Post1','content':'Content of Post1'},
@@ -15,7 +16,10 @@ def index(request):
     return render(request,'blog/index.html',{'blog_title':blog_title,'posts':posts})
 
 def detail(request,post_id):
-    return render(request,'blog/detail.html',{'post_id':post_id})
+    post=next((item for item in posts if item['id']==post_id),None)
+    logger=logging.getLogger("Testing")
+    logger.debug(f'post variable is {post}')
+    return render(request,'blog/detail.html',{'post':post})
 
 def old_url_view(request):
     return redirect(reverse('blog:new_url_page'))
